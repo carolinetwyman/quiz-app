@@ -5,46 +5,32 @@ const questionElement = document.getElementById('question')
 const timerContainerElement = document.getElementById('timer')
 const answerButtonsElement = document.getElementById('answer-buttons')
 const timerElement =document.getElementById('seconds')
+var score = 0
 let shuffledQuestions, currentQuestionIndex
 
-var secondsElapsed = 0;
-var totalSeconds = 0;
-var status = "working";
-var interval;
-
-getTimePreferences();
-
-function getFormattedSeconds() {
-    var secondsLeft = (totalSeconds - secondsElapsed) % 60;
-
-    var formattedSeconds;
-
-    if(secondsLeft < 10) {
-        formattedSeconds = "0" + secondsLeft
-    }
-}
+var counter = 0
 
 
-startButton.addEventListener("click", startGame, startTimer)
+startButton.addEventListener("click", startGame)
 nextButton.addEventListener('click', () => {
     currentQuestionIndex++
     setNextQuestion()
 })
 
-
-function startTimer() {
-    setTime();
-    if (totalSeconds > 0) {
-        interval = setInterval(function() {
-            secondsElapsed++;
-            renderTime();
-        } 1000);
-    } else {
-        alert("you've run out of time!");
-    }
-}
+var intervalState;
+var seconds = 30;
+timer.textContent = seconds;
 
 function startGame() {
+    //console.log("it works")
+    intervalState = setInterval(function(){
+        seconds = seconds - 1;
+        timer.textContent = seconds;
+        if(seconds <= 0) {
+            clearInterval(intervalState)
+            alert("Time's up!")
+        }
+    }, 1000)
     startButton.classList.add('hide')
     shuffledQuestions = questions.sort(() => Math.random() - .5)
     currentQuestionIndex = 0
@@ -86,14 +72,16 @@ function resetState() {
 function selectAnswer(e) {
     const selectedButton = e.target
     const correct = selectedButton.dataset.correct
+    const wrong = selectedButton.dataset.wrong
     setStatusClass(document.body, correct)
+    score++;
+    scoreboard.textContent = score
     Array.from(answerButtonsElement.children).forEach(button => {
         setStatusClass(button, button.dataset.correct)
     })
     if (shuffledQuestions.length > currentQuestionIndex + 1) {
         nextButton.classList.remove('hide')
     }   else {
-        startButton.innerText = 'restart'
         startButton.classList.remove('hide')
     }
 }
@@ -115,31 +103,39 @@ function clearStatusClass(element) {
 
 const questions = [
     {
-        question: 'what is 2 + 2',
+        question: 'HTML is to Noun as Javascript is to:',
         answers: [
-            { text: '4', correct: true},
-            { text: '22', correct: false}
+            { text: 'Verb', correct: true},
+            { text: 'Adjective', correct: false},
+            { text: 'Adverb', correct: false},
+            { text: 'Mnemonic', correct: false}
         ]
     },
     {
-        question: 'what is apple',
+        question: 'The most widely used CSS Styles can be found in',
         answers: [
-            { text: 'apple', correct: true},
-            { text: 'bear', correct: false}
+            { text: 'Wikipedia', correct: false},
+            { text: 'Bootstrap', correct: true},
+            { text: 'Font Awesome', correct: false},
+            { text: 'Photobucket', correct: false}
         ]
     },
     {
-        question: 'what is banana',
+        question: 'JQuery is an auxiliary language of',
         answers: [
-            { text: 'fruit', correct: true},
-            { text: 'fat', correct: false}
+            { text: 'CSS', correct: false},
+            { text: 'JSON', correct: false},
+            { text: 'Javascript', correct: true},
+            { text: 'Ajax', correct: false}
         ]
     },
         {
-        question: 'what is france',
+        question: '__ Web design changes with the size of the viewport',
         answers: [
-            { text: 'country', correct: true},
-            { text: 'penny', correct: false}
+            { text: 'Responsible', correct: false},
+            { text: 'Responsive', correct: true},
+            { text: 'Repository', correct: false},
+            { text: 'Refractory', correct: false}
         ]
     }
 ]
