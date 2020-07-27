@@ -4,7 +4,9 @@ const questionContainerElement = document.getElementById('question-container')
 const questionElement = document.getElementById('question')
 const timerContainerElement = document.getElementById('timer')
 const answerButtonsElement = document.getElementById('answer-buttons')
+var scoreboardContainerElement = document.getElementById('score')
 const timerElement =document.getElementById('seconds')
+
 var score = 0
 let shuffledQuestions, currentQuestionIndex
 
@@ -36,6 +38,7 @@ function startGame() {
     currentQuestionIndex = 0
     questionContainerElement.classList.remove('hide')
     timerContainerElement.classList.remove('hide')
+    scoreboardContainerElement.classList.remove('hide')
     setNextQuestion()
 }
 
@@ -72,7 +75,6 @@ function resetState() {
 function selectAnswer(e) {
     const selectedButton = e.target
     const correct = selectedButton.dataset.correct
-    const wrong = selectedButton.dataset.wrong
     setStatusClass(document.body, correct)
     score++;
     scoreboard.textContent = score
@@ -82,7 +84,28 @@ function selectAnswer(e) {
     if (shuffledQuestions.length > currentQuestionIndex + 1) {
         nextButton.classList.remove('hide')
     }   else {
-        startButton.classList.remove('hide')
+        var user = prompt('Those are all the questions! Enter your name to save your score')
+        if (user != null) {
+            var tempData = JSON.parse(localStorage.getItem("user")) || [];
+            //localStorage.setItem(user, score)
+            var userData = {
+                initial: user,
+                score: score
+            }
+            tempData.push(userData);
+            localStorage.setItem("user", JSON.stringify(tempData));
+            location.reload
+            //console.log(localStorage)
+            const game = document.querySelector(".game")
+            const scoreboard = document.querySelector(".scoreboard")
+            scoreboard.style.display = "inline"
+            game.style.display = "none"
+            const leaderboard = document.getElementById('leaderboard')
+            for (let i = 0; i < tempData.length; i++) {
+               //const value = localStorage.getItem(user, score) 
+               leaderboard.innerHTML += tempData[i].initial + "     " + tempData[i].score;
+            }
+        }
     }
 }
 
@@ -100,6 +123,9 @@ function clearStatusClass(element) {
         element.classList.remove('wrong')
 }
 
+$(document).on('click', '.start-over', function() {
+    location.reload()
+})
 
 const questions = [
     {
