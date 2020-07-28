@@ -1,7 +1,7 @@
 Test your coding knowledge!
 
 When you load the page, the Start button appears. Click it to begin the game. 
-![{images/startbutton.png}
+![]{images/startbutton.png}
 
 You will have 30 seconds for this whole quiz. Hurry up and answer the first question, the timer is already running!
 
