@@ -1,6 +1,9 @@
 *, *::before, *::after {
     box-sizing: border-box;
     font-family: 'Times New Roman', Times, serif
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 10px, 20px;
 }
 
 :root{

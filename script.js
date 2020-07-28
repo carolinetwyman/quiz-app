@@ -9,7 +9,6 @@ const timerElement =document.getElementById('seconds')
 
 var score = 0
 let shuffledQuestions, currentQuestionIndex
-
 var counter = 0
 
 
@@ -76,8 +75,12 @@ function selectAnswer(e) {
     const selectedButton = e.target
     const correct = selectedButton.dataset.correct
     setStatusClass(document.body, correct)
-    score++;
     scoreboard.textContent = score
+    if (correct) {
+        score++;
+    } else {
+        seconds -= 10
+    }
     Array.from(answerButtonsElement.children).forEach(button => {
         setStatusClass(button, button.dataset.correct)
     })
@@ -100,10 +103,11 @@ function selectAnswer(e) {
             const scoreboard = document.querySelector(".scoreboard")
             scoreboard.style.display = "inline"
             game.style.display = "none"
-            const leaderboard = document.getElementById('leaderboard')
             for (let i = 0; i < tempData.length; i++) {
                //const value = localStorage.getItem(user, score) 
-               leaderboard.innerHTML += tempData[i].initial + "     " + tempData[i].score;
+            var record = $('<div>');
+            record.text(tempData[i].initial + " :    " + tempData[i].score);
+            $('#leaderboard').append(record);
             }
         }
     }
