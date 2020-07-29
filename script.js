@@ -19,7 +19,7 @@ nextButton.addEventListener('click', () => {
 })
 
 var intervalState;
-var seconds = 30;
+var seconds = 60;
 timer.textContent = seconds;
 
 function startGame() {
@@ -167,5 +167,41 @@ const questions = [
             { text: 'Repository', correct: false},
             { text: 'Refractory', correct: false}
         ]
-    }
+    },
+    {
+        question: 'APIs:',
+        answers: [
+            { text: 'Are folders where you can exchange text files', correct: false},
+            { text: 'Are online image repositories', correct: false},
+            { text: 'Are the building blocks of databases', correct: false},
+            { text: 'Define interactions between software objects', correct: true}
+        ]
+    },
+    {
+        question: 'When you see "()" after a word in code, you are likely looking at a:',
+        answers: [
+            { text: 'Function', correct: true},
+            { text: 'Repo', correct: false},
+            { text: 'API', correct: true},
+            { text: 'Both A & B', correct: true}
+        ]
+    },
+    {
+        question: 'Local Storage is used to:',
+        answers: [
+            { text: 'Store data for this browsing session', correct: false},
+            { text: 'Encrypt data for security', correct: false},
+            { text: 'Store data even after refreshing the page or starting a new browsing session', correct: true},
+            { text: 'Store information for users in your geographic area', correct: false}
+        ]
+    },
+    {
+        question: 'The __ is accessed via the __ ',
+        answers: [
+            { text: 'Internet, Web', correct: false},
+            { text: 'Web, Internet', correct: true},
+            { text: 'Javascript, HTML', correct: false},
+            { text: 'API, Database', correct: false}
+        ]
+    },
 ]

@@ -2,7 +2,7 @@ Test your coding knowledge!
 
 When you load the page, the Start button appears. Click it to begin the game. 
 
-You will have 30 seconds for this whole quiz. Hurry up and answer the first question, the timer is already running!
+You will have 60 seconds for this whole quiz. Hurry up and answer the first question, the timer is already running!
 
 If you select the correct score, your answer will get 1 point. 
 
