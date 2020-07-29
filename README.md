@@ -2,13 +2,9 @@ Test your coding knowledge!
 
 When you load the page, the Start button appears. Click it to begin the game. 
 
-<<<<<<< HEAD
-You will have 60 seconds for this whole quiz. Hurry up and answer the first question, the timer is already running!
-=======
 <img src="images/startbutton.png">
 
-You will have 30 seconds for this whole quiz. Hurry up and answer the first question, the timer is already running!
->>>>>>> d431570e4bd6e50267e4c7ac2d6ec0f74d4b1f6c
+You will have 60 seconds for this whole quiz. Hurry up and answer the first question, the timer is already running!
 
 <img src="images/timeleft.png">
 
